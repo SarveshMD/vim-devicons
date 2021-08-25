@@ -9,24 +9,52 @@ function! s:suite.NoArgument_GetDefaultIcon()
   call s:assert.equals(WebDevIconsGetFileTypeSymbol(), '')
 endfunction
 
-function! s:suite.OneArgument_GetVimIcon()
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('.vimrc'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('vimrc'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('_vimrc'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('.gvimrc'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('gvimrc'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('_gvimrc'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.vim'), '')
+function! s:suite.__OneArgument_getVimIcon__()
+  let child = themis#suite('OneArgument_GetVimIcon')
+
+  function! child.dotvimrc()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('.vimrc'), '')
+  endfunction
+
+  function! child.vimrc()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('vimrc'), '')
+  endfunction
+
+  function! child._vimrc()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('_vimrc'), '')
+  endfunction
+
+  function! child.dotgvimrc()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('.gvimrc'), '')
+  endfunction
+
+  function! child._gvimrc()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('_gvimrc'), '')
+  endfunction
+
+  function! child.vimfile()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.vim'), '')
+  endfunction
 endfunction
 
-function! s:suite.OneArgumet_GetRubyIcon()
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.rb'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('Rakefile'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('RAKEFILE'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('rakefile'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('Gemfile'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('gemfile'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('config.ru'), '')
+function! s:suite.__getRubyIcon__()
+  let child = themis#suite('OneArgument_GetRubyIcon')
+
+  function! child.rb()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.rb'), '')
+  endfunction
+  function! child.rakefile()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('rakefile'), '')
+  endfunction
+  function! child.RAKEFILE()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('RAKEFILE'), '')
+  endfunction
+  function! child.Gemfile()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('Gemfile'), '')
+  endfunction
+  function! child.ru()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('config.ru'), '')
+  endfunction
 endfunction
 
 function! s:suite.OneArgument_GetGoIcon()
@@ -49,28 +77,79 @@ function! s:suite.OneArgument_GetLicenseIcon()
   call s:assert.equals( WebDevIconsGetFileTypeSymbol('LICENSE'), '')
 endfunction
 
-function! s:suite.OneArgument_GetMarkdownIcon()
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.md'),'')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.markdown'),'')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.mdx'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.rmd'), '')
+function! s:suite.__GetMarkdownIcon__()
+  let child = themis#suite('OneArgument_GetMarkdownIcon')
+
+  function! child.mdfile()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.md'),'')
+  endfunction
+
+  function! child.markdown()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.markdown'),'')
+  endfunction
+
+  function! child.mdx()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.mdx'), '')
+  endfunction
+
+  function! child.rmd()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.rmd'), '')
+  endfunction
+
 endfunction
 
-function! s:suite.OneArgument_GetPythonIcon()
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.py'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.pyc'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.pyo'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.pyd'), '')
+function! s:suite.__GetPythonIcon__()
+  let child = themis#suite('OneArgument_GetMarkdownIcon')
+
+  function! child.py()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.py'), '')
+  endfunction
+
+  function! child.pyc()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.pyc'), '')
+  endfunction
+
+  function! child.pyo()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.pyo'), '')
+  endfunction
+
+  function! child.pyd()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.pyd'), '')
+  endfunction
+
 endfunction
 
-function! s:suite.OneArgument_GetShellIcon()
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.sh'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.fish'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.bash'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.ksh'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.csh'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.awk'), '')
-  call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.ps1'), '')
+function! s:suite.__GetShellIcon__()
+  let child = themis#suite('OneArgument_GetShellIcon')
+
+  function! child.sh()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.sh'), '')
+  endfunction
+
+  function! child.fish()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.fish'), '')
+  endfunction
+
+  function! child.bash()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.bash'), '')
+  endfunction
+
+  function! child.ksh()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.ksh'), '')
+  endfunction
+
+  function! child.csh()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.csh'), '')
+  endfunction
+
+  function! child.awk()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.awk'), '')
+  endfunction
+  
+  function! child.ps1()
+    call s:assert.equals(WebDevIconsGetFileTypeSymbol('test.ps1'), '')
+  endfunction
+
 endfunction
 
 function! s:suite.OneArgument_GetElmIcon()
